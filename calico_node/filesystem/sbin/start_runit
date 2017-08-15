@@ -6,8 +6,11 @@ env > /etc/envvars
 retval=$?
 if [ $retval -ne 0 ];
 then
-    echo >&2 "Calico node failed to start"
-    exit $retval
+    echo >&2 "[ERROR] Calico node failed to start normally..."
+    echo "[WARN] Attempting to start Calico node in failsafe mode"
+    . startup.env
+    exec /sbin/runsvdir -P /etc/service/enabled || exit $retval
+    echo "[WARN] Started Calico node in failsafe mode."
 fi
 
 # Source any additional environment that was added by the startup script
