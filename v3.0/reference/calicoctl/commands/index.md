@@ -26,6 +26,7 @@ Usage:
               name.
     get       Get a resource identified by file, stdin or resource type and 
               name.
+    convert   Convert config files between different API versions.
     ipam      IP address management.
     node      Calico node management.
     version   Display the version of calicoctl.
